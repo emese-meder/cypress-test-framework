@@ -1,0 +1,39 @@
+name: Cypress E2E Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice 
+        description: "Select the environment for the test run"
+        required: true
+        options:
+        - dev
+        - test
+        - prod
+        default: "prod"
+        
+env:
+  ENVIRONMENT: ${{ github.event.inputs.environment }}
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start Test Run on ${{ env.ENVIRONMENT }}
+        run: echo 'Starting Test Run on ${{ env.ENVIRONMENT }}'
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      # Install NPM dependencies, cache them correctly
+      - name: Install Dependencies
+        run: npm install
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        if: env.ENVIRONMENT == 'prod'
+        with:
+          config: baseUrl=https://www.bbc.co.uk 
