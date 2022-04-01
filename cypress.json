@@ -1,0 +1,14 @@
+{
+  "baseUrl": "https://www.bbc.co.uk",
+  "env": {
+    "weather": "/weather"
+  },
+  "screenshotOnRunFailure": true,
+  "retries": { "runMode": 0, "openMode": 0 },
+  "viewportHeight": 720,
+  "viewportWidth": 1280,
+  "video": true,
+  "numTestsKeptInMemory": 5,
+  "testFiles": "**/*.feature",
+  "stepDefinitions": "cypress/integration/*/*.spec.js"
+}
