@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# videos and screenshots
+cypress/videos
+**/*.mp4
+cypress/screenshots
+
