@@ -13,7 +13,7 @@ Given('I open the BBC Homepage', ()=> {
 });
 
 When('I click on the Weather tab', ()=> {
-  cy.get('nav:first').should('be.visible').within(()=>{
+  cy.get('nav[class*="GlobalNavigation e4np8gz0"]').should('be.visible').within(()=>{
     cy.get('[href="https://www.bbc.co.uk/weather"]:first').click();
   })
 });
