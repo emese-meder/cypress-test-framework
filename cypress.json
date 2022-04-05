@@ -10,5 +10,6 @@
   "video": true,
   "numTestsKeptInMemory": 5,
   "testFiles": "**/*.feature",
-  "stepDefinitions": "cypress/integration/*/*.spec.js"
+  "stepDefinitions": "cypress/integration/*/*.spec.js",
+  "chromeWebSecurity": false
 }
