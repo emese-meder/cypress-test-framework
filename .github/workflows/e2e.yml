@@ -19,7 +19,7 @@ env:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    container: browsers:node14.16.0-chrome89-ff86
+    container: cypress/browsers:node14.16.0-chrome89-ff86
     steps:
       - name: Start Test Run on ${{ env.ENVIRONMENT }}
         run: echo 'Starting Test Run on ${{ env.ENVIRONMENT }}'
