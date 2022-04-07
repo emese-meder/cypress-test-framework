@@ -1,8 +1,5 @@
 {
-  "baseUrl": "https://www.bbc.co.uk",
-  "env": {
-    "weather": "/weather"
-  },
+  "baseUrl": "https://www.google.com",
   "screenshotOnRunFailure": true,
   "retries": { "runMode": 0, "openMode": 0 },
   "viewportHeight": 720,
