@@ -27,12 +27,28 @@ jobs:
         uses: actions/checkout@v2
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Cypress run
+      # Prod
+      - name: Cypress run on production
         uses: cypress-io/github-action@v2
         if: env.ENVIRONMENT == 'prod'
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
+      # Test
+      - name: Cypress run on test environment
+        uses: cypress-io/github-action@v2
+        if: env.ENVIRONMENT == 'test'
+        with:
+          browser: chrome
+          config: baseUrl=https://www.google.com
+      # Dev
+      - name: Cypress run on dev environment
+        uses: cypress-io/github-action@v2
+        if: env.ENVIRONMENT == 'dev'
+        with:
+          browser: chrome
+          config: baseUrl=https://www.google.com
+          
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
         if: failure()
