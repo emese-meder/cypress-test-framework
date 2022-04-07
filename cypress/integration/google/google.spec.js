@@ -10,7 +10,11 @@ Given('I open the Google Homepage', ()=> {
   // clear cookies again after visiting to remove
   // any 3rd party cookies picked up
   cy.clearCookies();
-  cy.get('button').contains('I agree').click();
+  try {
+    cy.get('button').contains('I agree').click();
+  } catch (error) {
+    console.log("There was no cookie pop up")
+  }
 });
 
 When('I type {string} in the search field', (searchTerm)=> {
