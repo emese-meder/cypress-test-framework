@@ -34,7 +34,7 @@ jobs:
           browser: chrome
           config: baseUrl=https://www.bbc.co.uk 
       - name: Upload screenshots
-        uses: actions/upload-artifact@latest
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-screenshots
