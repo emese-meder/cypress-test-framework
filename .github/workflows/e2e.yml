@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.16.0-chrome89-ff86
     steps:
-      - name: Start ${{ env.TAG }} Test Run on ${{ env.ENVIRONMENT }}
+      - name: Start ${{ github.event.inputs.tag }} Test Run on ${{ env.ENVIRONMENT }}
         run: echo 'Starting Test Run on ${{ env.ENVIRONMENT }}'
       - name: Checkout
         uses: actions/checkout@v2
@@ -43,7 +43,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
-          tag: env.TAG
+          tag: ${{ github.event.inputs.tag }}
       # Test
       - name: Cypress run on test environment
         uses: cypress-io/github-action@v2
@@ -51,7 +51,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
-          tag: env.TAG
+          tag: ${{ github.event.inputs.tag }}
       # Dev
       - name: Cypress run on dev environment
         uses: cypress-io/github-action@v2
@@ -59,7 +59,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
-          tag: env.TAG
+          tag: ${{ github.event.inputs.tag }}
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
         if: failure()
