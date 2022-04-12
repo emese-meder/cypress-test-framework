@@ -43,7 +43,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
-          tag: ${{ env.TAG }}
+          tag: env.TAG
       # Test
       - name: Cypress run on test environment
         uses: cypress-io/github-action@v2
@@ -51,7 +51,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
-          tag: ${{ env.TAG }}
+          tag: env.TAG
       # Dev
       - name: Cypress run on dev environment
         uses: cypress-io/github-action@v2
@@ -59,7 +59,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
-          tag: ${{ env.TAG }}
+          tag: env.TAG
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
         if: failure()
