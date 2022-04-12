@@ -10,11 +10,13 @@ Given('I open the Google Homepage', ()=> {
   // clear cookies again after visiting to remove
   // any 3rd party cookies picked up
   cy.clearCookies();
-  try{
-    cy.contains('I agree').click();
-  } catch(err){
-    //
-  }
+
+  cy.get("body").then($body =>{
+    if ($body.find("button[class='tHlp8d']").length > 0){
+      cy.get("button[class='tHlp8d']").contains('I agree').click();
+    }
+  })
+
 });
 
 When('I type {string} in the search field', (searchTerm)=> {
