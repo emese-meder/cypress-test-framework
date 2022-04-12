@@ -10,6 +10,11 @@ Given('I open the Google Homepage', ()=> {
   // clear cookies again after visiting to remove
   // any 3rd party cookies picked up
   cy.clearCookies();
+  try{
+    cy.contains('I agree').click();
+  } catch(err){
+    //
+  }
 });
 
 When('I type {string} in the search field', (searchTerm)=> {
@@ -21,6 +26,6 @@ Then('I hit enter', ()=> {
 });
 
 Then('I am directed to the search results', ()=> {
-  cy.title().should('match', /White Dwarf - Google Search/);
+  cy.title().should('match', /Planetary Nebula - Google Search/);
 });
 
