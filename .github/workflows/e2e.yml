@@ -12,6 +12,15 @@ on:
         - test
         - prod
         default: "prod"
+      tag:
+        type: choice 
+        description: "Select test tags - optional"
+        required: false
+        options:
+        - P1Test
+        - P2Test
+        - tag
+        default: "tag"
         
 env:
   ENVIRONMENT: ${{ github.event.inputs.environment }}
@@ -34,6 +43,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
+          tag: ${{ env.TAG }}
       # Test
       - name: Cypress run on test environment
         uses: cypress-io/github-action@v2
@@ -41,6 +51,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
+          tag: ${{ env.TAG }}
       # Dev
       - name: Cypress run on dev environment
         uses: cypress-io/github-action@v2
@@ -48,7 +59,7 @@ jobs:
         with:
           browser: chrome
           config: baseUrl=https://www.google.com
-          
+          tag: ${{ env.TAG }}
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
         if: failure()
