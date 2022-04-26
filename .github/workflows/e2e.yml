@@ -12,14 +12,9 @@ on:
         - test
         - prod
         default: "prod"
-      tag:
-        type: choice 
-        description: "Select test tags - optional"
+      tag: 
+        description: "Enter test tags - optional"
         required: false
-        options:
-        - P1Test
-        - P2Test
-        - tag
         
 env:
   ENVIRONMENT: ${{ github.event.inputs.environment }}
