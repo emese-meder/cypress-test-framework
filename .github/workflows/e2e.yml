@@ -15,6 +15,15 @@ on:
       tag: 
         description: "Enter test tags - optional"
         required: false
+      browser:
+        description: "Select the browser to run the tests in"
+        type: choice
+        required: true
+        options:
+          - chrome
+          - electron
+          - firefox
+        default: "electron"
         
 env:
   ENVIRONMENT: ${{ github.event.inputs.environment }}
@@ -35,6 +44,7 @@ jobs:
         uses: cypress-io/github-action@v2
         if: env.ENVIRONMENT == 'prod'
         with:
+          browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
           tag: ${{ github.event.inputs.tag }}
       # Test
@@ -42,6 +52,7 @@ jobs:
         uses: cypress-io/github-action@v2
         if: env.ENVIRONMENT == 'test'
         with:
+          browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
           tag: ${{ github.event.inputs.tag }}
       # Dev
@@ -49,6 +60,7 @@ jobs:
         uses: cypress-io/github-action@v2
         if: env.ENVIRONMENT == 'dev'
         with:
+          browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
           tag: ${{ github.event.inputs.tag }}
       - name: Upload screenshots
