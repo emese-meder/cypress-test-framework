@@ -20,7 +20,6 @@ on:
         - P1Test
         - P2Test
         - tag
-        default: "tag"
         
 env:
   ENVIRONMENT: ${{ github.event.inputs.environment }}
