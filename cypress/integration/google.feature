@@ -11,7 +11,7 @@ Scenario: I search for a term
     
 @P1Test
 Scenario: I search for a term p1 version
-    When I type "Planetary Nebula" in the search field
+    When I type "Planetary Nebulaaa" in the search field
     And I hit enter
     Then I am directed to the search results
 
