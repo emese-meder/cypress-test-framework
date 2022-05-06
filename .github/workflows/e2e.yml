@@ -31,13 +31,30 @@ env:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+    strategy:
+      # when one test fails, DO NOT cancel the other
+      # containers, because this will kill Cypress processes
+      # leaving the Dashboard hanging ...
+      # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: false
+      matrix:
+        # run 3 copies of the curreent job in parallel
+        containers: [1, 2, 3]
+        node-version: [14.x]
     # container: cypress/browsers:node14.16.0-chrome89-ff86
+    
     steps:
       - name: Start ${{ github.event.inputs.tag }} Test Run on ${{ env.ENVIRONMENT }}
         run: echo 'Starting Test Run on ${{ env.ENVIRONMENT }}'
+        
       - name: Checkout
         uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
+        
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          
       # and run all Cypress tests
       # Prod
       - name: Cypress run on production
