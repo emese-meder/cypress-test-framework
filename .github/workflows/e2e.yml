@@ -46,7 +46,12 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
+          record: true
           tag: ${{ github.event.inputs.tag }}
+        env: 
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       # Test
       - name: Cypress run on test environment
         uses: cypress-io/github-action@v2
@@ -54,7 +59,12 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
+          record: true
           tag: ${{ github.event.inputs.tag }}
+        env: 
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       # Dev
       - name: Cypress run on dev environment
         uses: cypress-io/github-action@v2
@@ -62,7 +72,12 @@ jobs:
         with:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
+          record: true
           tag: ${{ github.event.inputs.tag }}
+        env: 
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
         if: failure()
