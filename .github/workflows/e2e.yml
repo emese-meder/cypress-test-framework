@@ -47,6 +47,7 @@ jobs:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
           record: true
+          parallel: true
           tag: ${{ github.event.inputs.tag }}
         env: 
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
