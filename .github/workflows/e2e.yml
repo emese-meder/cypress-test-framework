@@ -59,6 +59,7 @@ jobs:
       # Prod
       - name: Cypress run on production
         uses: cypress-io/github-action@v2
+        timeout-minutes: 5
         if: env.ENVIRONMENT == 'prod'
         with:
           browser: ${{ github.event.inputs.browser }}
@@ -74,6 +75,7 @@ jobs:
       - name: Cypress run on test environment
         uses: cypress-io/github-action@v2
         if: env.ENVIRONMENT == 'test'
+        timeout-minutes: 5
         with:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
@@ -87,6 +89,7 @@ jobs:
       - name: Cypress run on dev environment
         uses: cypress-io/github-action@v2
         if: env.ENVIRONMENT == 'dev'
+        timeout-minutes: 5
         with:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
