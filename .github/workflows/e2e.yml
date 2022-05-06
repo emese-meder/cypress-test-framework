@@ -48,12 +48,11 @@ jobs:
           config: baseUrl=https://www.google.com
           record: true
           parallel: true
-          tag: ${{ github.event.inputs.tag }}
+          tag: ${{ env.ENVIRONMENT }}
         env: 
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          TAGS: ${{ github.event.inputs.tag }}
       # Test
       - name: Cypress run on test environment
         uses: cypress-io/github-action@v2
@@ -62,12 +61,11 @@ jobs:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
           record: true
-          tag: ${{ github.event.inputs.tag }}
+          tag: ${{ env.ENVIRONMENT }}
         env: 
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          TAGS: ${{ github.event.inputs.tag }}
       # Dev
       - name: Cypress run on dev environment
         uses: cypress-io/github-action@v2
@@ -76,12 +74,11 @@ jobs:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
           record: true
-          tag: ${{ github.event.inputs.tag }}
+          tag: ${{ env.ENVIRONMENT }}
         env: 
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          TAGS: ${{ github.event.inputs.tag }}
       - name: Upload screenshots
         uses: actions/upload-artifact@v3
         if: failure()
