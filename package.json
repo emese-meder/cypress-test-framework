@@ -16,5 +16,12 @@
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
+  },
+  "overrides": {
+    "cypress-cucumber-preprocessor": {
+      "cucumber": {
+        "colors": "1.4.0"
+      }
+    }
   }
 }
