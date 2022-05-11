@@ -32,7 +32,7 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
 
-    container: cypress/base:14.16.0
+    container: cypress/browsers:node14.17.6-chrome100-ff98
     
     steps:
       - name: Start ${{ github.event.inputs.tag }} Test Run on ${{ env.ENVIRONMENT }}
