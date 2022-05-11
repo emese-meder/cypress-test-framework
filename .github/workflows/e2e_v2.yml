@@ -22,7 +22,6 @@ on:
         options:
           - chrome
           - electron
-          - firefox
         default: "electron"
         
 env:
@@ -34,7 +33,6 @@ jobs:
 
     container: 
       image: cypress/browsers:node14.17.6-chrome100-ff98
-      options: --user 1001
     
     steps:
       - name: Start ${{ github.event.inputs.tag }} Test Run on ${{ env.ENVIRONMENT }}
