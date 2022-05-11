@@ -56,6 +56,7 @@ jobs:
           browser: ${{ github.event.inputs.browser }}
           config: baseUrl=https://www.google.com
           record: true
+          command-prefix: "--"
           parallel: true
           tag: ${{ env.ENVIRONMENT }}
         env: 
