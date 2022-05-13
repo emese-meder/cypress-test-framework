@@ -1,4 +1,4 @@
-name: Cypress E2E Tests v2
+name: Cypress E2E no container
 
 on:
   workflow_dispatch:
