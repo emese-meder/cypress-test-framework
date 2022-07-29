@@ -1,0 +1,61 @@
+name: Cypress E2E Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      baseURL:
+        type: string 
+        description: Enter the baseURL to run the tests for
+        default: 'https:/www.google.com'
+        required: true
+      environmentTag:
+        type: choice
+        description: Select the appropriate environment tag for the baseURL
+        options: 
+        - test
+        - prod
+        required: false
+        default: "test"
+      browser:
+        type: choice
+        description: Select the browser
+        required: true
+        options: 
+          - electron
+          - chrome
+        default: "electron"
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    # setup the test run
+    steps:
+      - name: Start Test Run on ${{ github.event.inputs.baseURL }}
+        run: echo 'Starting Test Run on ${{ github.event.inputs.baseURL }}'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      # and run all Cypress tests
+      - name: Cypress run on ${{ github.event.inputs.baseURL }}
+        uses: cypress-io/github-action@v2
+        timeout-minutes: 10
+        with:
+          browser: ${{ github.event.inputs.browser }}
+          config: baseUrl=${{ github.event.inputs.baseURL }}
+          record: false
+          command-prefix: "--"
+
+      # upload screenshots for failed tests
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
