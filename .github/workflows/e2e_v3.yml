@@ -6,7 +6,7 @@ on:
       baseURL:
         type: string 
         description: Enter the baseURL to run the tests for
-        default: 'https:/www.google.com'
+        default: 'https://www.google.com'
         required: true
       environmentTag:
         type: choice
